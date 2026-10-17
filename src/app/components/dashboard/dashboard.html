@@ -13,7 +13,14 @@
     <!-- Right: Actions Section -->
     <div class="header-actions">
 
-
+      <button
+        type="button"
+        class="btn btn btn-light add-list-btn"
+        (click)="openAddListModal()"
+      >
+        <i class="bi bi-plus-lg"></i>
+        <span>Add List</span>
+      </button>
 
       <div class="profile-section">
         <div class="avatar">AK</div>
@@ -31,7 +38,8 @@
 
     @for (list of lists; track list.id) {
       <app-board-list 
-        [list] = "list" 
+        [list] = "list"
+        (deleteList) = "deleteList($event)"
         (cardDropped) = "drop($event, list)"
       />
     }
@@ -39,6 +47,14 @@
   </div>
 </main>
 
+
+<!-- ================= ADD LIST MODAL ================= -->
+@if (showAddListModal) {
+  <app-add-list-modal
+    (save)="saveNewList($event)"
+    (cancel)="closeAddListModal()"
+  />
+}
 
 
 

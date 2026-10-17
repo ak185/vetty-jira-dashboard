@@ -12,7 +12,7 @@ import {
 
 import { BoardCard, BoardList } from '../../models/board.model';
 import { BoardListComponent } from '../board-list/board-list';
-
+import { AddListModalComponent } from '../add-list-modal/add-list-modal';
 
 const STORAGE_KEY = 'vetty-jira-board';
 
@@ -23,11 +23,13 @@ const STORAGE_KEY = 'vetty-jira-board';
     CommonModule,
     FormsModule,
     DragDropModule,
-    BoardListComponent
+    BoardListComponent,
+    AddListModalComponent
   ],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css'
 })
+
 export class Dashboard implements OnInit {
   lists: BoardList[] = [];
 
@@ -70,7 +72,40 @@ export class Dashboard implements OnInit {
     this.saveBoard();
   }
 
+  openAddListModal(): void {
+    this.showAddListModal = true;
+  }
 
+  closeAddListModal(): void {
+    this.showAddListModal = false;
+  }
+
+
+  saveNewList(name: string): void {
+    const header = name.trim(); //prompt('Enter list name:')?.trim();
+
+    if (!header) return;
+
+    this.lists.push({
+      id: crypto.randomUUID(),
+      header,
+      cards: []
+    });
+
+    this.saveBoard();
+    this.closeAddListModal();
+  }
+
+  deleteList(listId: string): void {
+    const confirmed = confirm(
+      'Delete this list and all its cards?'
+    );
+
+    if (!confirmed) return;
+
+    this.lists = this.lists.filter(list => list.id !== listId);
+    this.saveBoard();
+  }
 
   drop(event: CdkDragDrop<BoardCard[]>, target: BoardList): void {
     if (event.previousContainer === event.container) {

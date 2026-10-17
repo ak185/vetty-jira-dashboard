@@ -1,0 +1,72 @@
+<div
+    class="modal-backdrop-custom"
+    (click)="closeModal()"
+  >
+    <div
+      class="add-list-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="addListTitle"
+      (click)="$event.stopPropagation()"
+    >
+      <!-- Modal Header -->
+      <div class="modal-header-custom p-3">
+        <h5 id="addListTitle">Add List</h5>
+
+        <button
+          type="button"
+          class="modal-close-btn"
+          aria-label="Close"
+          (click)="closeModal()"
+        >
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      <!-- Modal Form -->
+      <form (ngSubmit)="addList()">
+        <div class="modal-body-custom">
+          <label for="listName" class="d-flex form-label">
+            Enter List name <span class="text-danger">*</span>
+          </label>
+
+          <input
+            type="text"
+            id="listName"
+            name="listName"
+            class="form-control"
+            placeholder="Enter List name..."
+            [(ngModel)]="newListName"
+            (input)="listNameError = ''"
+            maxlength="50"
+            autofocus
+          />
+
+          @if (listNameError) {
+            <small class="text-danger">
+              {{ listNameError }}
+            </small>
+          }
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="modal-footer-custom p-2">
+          <button
+            type="submit"
+            class="btn add-submit-btn"
+          >
+            <i class="bi bi-plus-lg me-1"></i>
+            Add
+          </button>
+
+          <button
+            type="button"
+            class="btn cancel-btn"
+            (click)="closeModal()"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>

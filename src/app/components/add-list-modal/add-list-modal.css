@@ -1,0 +1,154 @@
+/* ========================================
+  ADD LIST MODAL
+======================================== */
+.modal-backdrop-custom {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 1050;
+  backdrop-filter: blur(3px);
+}
+
+/* Modal container */
+.add-list-modal {
+  width: 100%;
+  max-width: 440px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  animation: modalFadeIn 0.18s ease-out;
+}
+
+/* Header */
+.modal-header-custom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e9edf2;
+}
+
+.modal-header-custom h5 {
+  margin: 0;
+  color: #172b4d;
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.modal-close-btn {
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-size: 16px;
+  padding: 4px 6px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.modal-close-btn:hover {
+  background: #f1f5f9;
+  color: #172b4d;
+}
+
+/* Form body */
+.modal-body-custom {
+  padding: 24px;
+}
+
+.modal-body-custom .form-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.modal-body-custom .form-control {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  box-shadow: none;
+}
+
+.modal-body-custom .form-control:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+  outline: none;
+}
+
+.modal-body-custom .text-danger {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+}
+
+/* Footer */
+.modal-footer-custom {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 24px;
+  border-top: 1px solid #e9edf2;
+  background: #fafbfc;
+}
+
+.modal-footer-custom .btn {
+  min-height: 40px;
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.cancel-btn {
+  color: #475569;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+}
+
+.cancel-btn:hover {
+  background: #f1f5f9;
+}
+
+.add-submit-btn {
+  background: #f0f2f5;
+  color: #000000;
+  border: 1px solid #00000057;
+}
+
+.add-submit-btn:hover {
+  background: #6a6a6a;
+  color: #ffffff;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-header-custom,
+  .modal-body-custom {
+    padding: 18px;
+  }
+
+  .modal-footer-custom {
+    padding: 14px 18px;
+  }
+}
