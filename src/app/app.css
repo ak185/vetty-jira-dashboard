@@ -1,0 +1,48 @@
+
+:host {
+  display: block;
+}
+
+.navbar {
+  position: relative;
+  z-index: 10;
+}
+
+.brand-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: #0d6efd;
+  color: #fff;
+  font-size: 21px;
+}
+
+.search-box {
+  width: 240px;
+}
+
+.search-box .form-control,
+.search-box .input-group-text {
+  box-shadow: none;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-weight: 700;
+}
+
+@media (max-width: 991.98px) {
+  .search-box {
+    width: 100%;
+  }
+}

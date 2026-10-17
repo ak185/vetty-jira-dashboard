@@ -1,0 +1,75 @@
+<section class="task-column">
+
+    <!-- List Header -->
+    <div class="task-column-header">
+        <div class="d-flex align-items-center gap-2">
+        <h6 class="mb-0 fw-bold">{{ list.header }}</h6>
+            <!-- <span class="task-count">
+                {{ list.cards.length }}
+                {{ list.cards.length === 1 ? 'card' : 'cards' }} 
+            </span> -->
+        </div>
+
+        <button
+        type="button"
+        class="btn btn-sm btn-light text-danger"
+        title="Delete list"
+        aria-label="Delete list"
+        (click)="onDeleteList()"
+        >
+        <i class="bi bi-x-lg"></i>
+        </button>
+    </div>
+
+    <!-- Card Drop Area -->
+    <div
+        class="card-list"
+        cdkDropList
+        [id]="'list-' + list.id"
+        [cdkDropListData]="list.cards"
+        (cdkDropListDropped)="onCardDropped($event)"
+    >
+        @for (card of list.cards; track card.id) {
+        <article class="task-card" cdkDrag>
+
+            <div class="d-flex justify-content-between align-items-start gap-2">
+            <h6 class="task-card-title mb-2">
+                {{ card.header }}
+            </h6>
+
+            <button
+                type="button"
+                class="btn btn-sm btn-light text-danger card-delete-btn"
+                title="Delete card"
+                aria-label="Delete card"
+                (click)="onDeleteCard(card.id)"
+            >
+                <i class="bi bi-x"></i>
+            </button>
+            </div>
+
+            <p class="task-card-description mb-3">
+            {{ card.desc || 'No description provided.' }}
+            </p>
+
+            <div class="task-card-footer">
+            <small class="text-muted">
+                {{ card.createdAt | date:'dd MMM, yyyy h:mm a' }}
+            </small>
+            </div>
+
+            <div *cdkDragPlaceholder class="task-card-placeholder"></div>
+        </article>
+        }
+    </div>
+
+    <!-- Add Card -->
+    <button
+        type="button"
+        class="add-card-btn"
+        (click)="onAddCard()"
+    >
+        <i class="bi bi-plus-lg me-2"></i>
+    </button>
+
+</section>
