@@ -1,0 +1,45 @@
+<!-- ================= HEADER ================= -->
+<nav class="navbar board-navbar">
+  <div class="container-fluid navbar-content">
+
+    <!-- Left: Logo Section -->
+    <a class="brand-section" href="#">
+
+      <div class="brand-details">
+        <span class="brand-name">Jira Board</span>
+      </div>
+    </a>
+
+    <!-- Right: Actions Section -->
+    <div class="header-actions">
+
+
+
+      <div class="profile-section">
+        <div class="avatar">AK</div>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+<!-- ================= BOARD CONTENT ================= -->
+<main class="dashboard-container">
+
+  <!-- Board Lists -->
+  <div class="board" cdkDropListGroup>
+
+    @for (list of lists; track list.id) {
+      <app-board-list 
+        [list] = "list" 
+        (cardDropped) = "drop($event, list)"
+      />
+    }
+
+  </div>
+</main>
+
+
+
+
+
