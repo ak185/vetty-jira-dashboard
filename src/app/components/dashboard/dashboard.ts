@@ -13,6 +13,8 @@ import {
 import { BoardCard, BoardList } from '../../models/board.model';
 import { BoardListComponent } from '../board-list/board-list';
 import { AddListModalComponent } from '../add-list-modal/add-list-modal';
+import { AddCardModalComponent } from '../add-card-modal/add-card-modal';
+
 
 const STORAGE_KEY = 'vetty-jira-board';
 
@@ -24,7 +26,8 @@ const STORAGE_KEY = 'vetty-jira-board';
     FormsModule,
     DragDropModule,
     BoardListComponent,
-    AddListModalComponent
+    AddListModalComponent,
+    AddCardModalComponent
   ],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css'
@@ -80,6 +83,18 @@ export class Dashboard implements OnInit {
     this.showAddListModal = false;
   }
 
+  openAddCardModal(list: BoardList): void {
+    console.log('Opening modal for:', list.header);
+
+    this.selectedList = list;
+    this.showAddCardModal = true;   
+  }
+
+  closeAddCardModal(): void {
+    this.selectedList = null;
+    this.showAddCardModal = false;
+  }
+
 
   saveNewList(name: string): void {
     const header = name.trim(); //prompt('Enter list name:')?.trim();
@@ -104,6 +119,20 @@ export class Dashboard implements OnInit {
     if (!confirmed) return;
 
     this.lists = this.lists.filter(list => list.id !== listId);
+    this.saveBoard();
+  }
+
+  saveNewCard(card: BoardCard): void {
+    if (!this.selectedList) return;
+
+    this.selectedList.cards.push(card);
+    this.sortAllLists();
+    this.saveBoard();
+    this.closeAddCardModal();
+  }
+
+  deleteCard(list: BoardList, cardId: string): void {
+    list.cards = list.cards.filter(card => card.id !== cardId);
     this.saveBoard();
   }
 

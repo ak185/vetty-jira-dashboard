@@ -1,0 +1,99 @@
+<div
+    class="modal-backdrop-custom"
+    (click)="closeModal()"
+  >
+    <div
+      class="add-list-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="addCardTitle"
+      (click)="$event.stopPropagation()"
+    >
+      <!-- Header -->
+      <div class="modal-header-custom p-3">
+        <h5 id="addCardTitle">Add Card - {{ list.header }}</h5>
+
+        <button
+          type="button"
+          class="modal-close-btn"
+          aria-label="Close"
+          (click)="closeModal()"
+        >
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      <!-- Form -->
+      <form (ngSubmit)="addCard()">
+        <div class="modal-body-custom p-3">
+
+          <!-- Card Title -->
+          <div class="mb-3">
+            <label for="cardHeader" class="d-flex form-label">
+              Card Title <span class="text-danger">*</span>
+            </label>
+
+            <input
+              type="text"
+              id="cardHeader"
+              name="cardHeader"
+              class="form-control"
+              placeholder="Enter card title"
+              [(ngModel)]="newCardHeader"
+              (input)="cardHeaderError = ''"
+              maxlength="100"
+            />
+
+            @if (cardHeaderError) {
+              <small class="text-danger">
+                {{ cardHeaderError }}
+              </small>
+            }
+          </div>
+
+          <!-- Description -->
+          <div class="mb-2">
+            <label for="cardDescription" class="d-flex form-label">
+              Description <span class="text-danger">*</span>
+            </label>
+
+            <textarea
+              id="cardDescription"
+              name="cardDescription"
+              class="form-control"
+              rows="4"
+              placeholder="Enter card description..."
+              [(ngModel)]="newCardDesc"
+              maxlength="1000"
+            ></textarea>
+
+             @if (cardDescError) {
+              <small class="text-danger">
+                {{ cardDescError }}
+              </small>
+            }
+          </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="modal-footer-custom p-2">
+          <button
+            type="submit"
+            class="btn add-submit-btn"
+          >
+            <i class="bi bi-plus-lg me-1"></i>
+            Add Card
+          </button>
+
+          <button
+            type="button"
+            class="btn cancel-btn"
+            (click)="closeModal()"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>

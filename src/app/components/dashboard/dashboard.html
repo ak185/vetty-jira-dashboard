@@ -40,6 +40,8 @@
       <app-board-list 
         [list] = "list"
         (deleteList) = "deleteList($event)"
+        (addCard) = "openAddCardModal($event)"
+        (deleteCard) = "deleteCard($event.list, $event.cardId)"
         (cardDropped) = "drop($event, list)"
       />
     }
@@ -56,6 +58,15 @@
   />
 }
 
+
+<!-- ================= ADD CARD MODAL ================= -->
+@if (showAddCardModal && selectedList) {
+  <app-add-card-modal
+    [list]="selectedList"
+    (save)="saveNewCard($event)"
+    (cancel)="closeAddCardModal()"
+  />
+}
 
 
 
